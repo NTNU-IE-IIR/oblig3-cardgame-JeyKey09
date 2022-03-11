@@ -15,7 +15,11 @@ import no.ntnu.mathijoh.cardgame.models.DeckOfCard;
 import no.ntnu.mathijoh.cardgame.models.HandOfCards;
 import no.ntnu.mathijoh.cardgame.models.PlayingCard;
 
-
+/**
+ * CardController to be linked to the buttons and labels
+ * @author Matias J. Kirkeby
+ * @version 11-03-2022
+ */
 public class CardController {
 
     private int cardwidth = 79;
@@ -42,6 +46,10 @@ public class CardController {
     @FXML
     private Text cardsLeft;
     
+    /** 
+     * Draws one card and adds the card to the Board and hand
+     * @param event
+     */
     @FXML
     private void drawCard(ActionEvent event) {
         List<PlayingCard> playingCards = this.deck.dealHand(1);
@@ -55,6 +63,10 @@ public class CardController {
         updateInfo();
     }
 
+    /**
+     * Draws 5 card of the deck
+     * @param event
+     */
     @FXML
     private void newHand(ActionEvent event) {
         List<PlayingCard> playingCards = this.deck.dealHand(5);
@@ -68,6 +80,10 @@ public class CardController {
         updateInfo();
     }
 
+    /**
+     * Resets the hand, board and deck
+     * @param event
+     */
     @FXML
     private void reset(ActionEvent event) {
         purgeBoard();
@@ -76,6 +92,11 @@ public class CardController {
         updateInfo();
     }
 
+    /**
+     * Gets a card and returns a image object of that card
+     * @param card the playing card to fetch a image from
+     * @return ImageView of the card
+     */
     private ImageView cardImageView(PlayingCard card) {
         int yStart = 0;
         int xStart = cardwidth*card.getFace() - cardwidth;
@@ -100,10 +121,16 @@ public class CardController {
         return cardImageView;
     }
 
+    /**
+     * Purges the board of every card on it
+     */
     private void purgeBoard(){
         board.getChildren().removeAll(board.getChildren());
     }
 
+    /**
+     * Updates every field on the bottom 
+     */
     private void updateInfo() {
         Iterator<PlayingCard> it = this.hand.getHand().iterator();
         int sum = 0;

@@ -14,7 +14,6 @@ public class App extends Application {
     int ySize = 700;
 
 
-
     @Override
     public void start(Stage stage) throws IOException {    
 
@@ -25,7 +24,11 @@ public class App extends Application {
         stage.setTitle("CardGame");
         stage.show();
     }
-
+    
+    /**
+     * Launches the application
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
