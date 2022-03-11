@@ -15,7 +15,7 @@ public class DeckOfCard {
     public DeckOfCard() {
         this.deck = new ArrayList<>();
         for (char cSuit : suit) {
-            for(int i = 0; i < cardeachsuit ; i++) {
+            for(int i = 1; i <= cardeachsuit ; i++) {
                 deck.add(new PlayingCard(cSuit, i));
             }
         }

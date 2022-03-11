@@ -3,6 +3,6 @@ module no.ntnu.mathijoh.cardgame {
     requires javafx.controls;
     requires javafx.fxml;
     exports no.ntnu.mathijoh.cardgame;
-    exports no.ntnu.mathijoh.cardgame.controlleres;
-    opens no.ntnu.mathijoh.cardgame.controlleres to javafx.fxml;
+    exports no.ntnu.mathijoh.cardgame.controller;
+    opens no.ntnu.mathijoh.cardgame.controller to javafx.fxml;
 }
