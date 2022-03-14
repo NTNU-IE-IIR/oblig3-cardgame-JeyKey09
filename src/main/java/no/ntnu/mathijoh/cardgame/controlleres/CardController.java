@@ -1,4 +1,4 @@
-package no.ntnu.mathijoh.cardgame.controller;
+package no.ntnu.mathijoh.cardgame.controlleres;
 
 import java.util.HashMap;
 import java.util.Iterator;

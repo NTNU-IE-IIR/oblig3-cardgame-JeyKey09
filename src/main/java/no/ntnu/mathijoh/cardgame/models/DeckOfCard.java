@@ -37,7 +37,7 @@ public class DeckOfCard {
      */
     public List<PlayingCard> dealHand(int n) throws IllegalArgumentException {
         List<PlayingCard> placeholderPlayingCards = new ArrayList<>();
-        if (n > this.deck.size()) {
+        if (n > this.deck.size() && n > 0) {
             throw new IllegalArgumentException("You picked to many cards");
         }
 
