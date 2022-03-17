@@ -10,10 +10,6 @@ import java.io.IOException;
 
 public class App extends Application {
 
-    int xSize = 1000;
-    int ySize = 700;
-
-
     @Override
     public void start(Stage stage) throws IOException {    
 

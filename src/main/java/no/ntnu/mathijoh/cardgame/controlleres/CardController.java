@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -24,9 +25,8 @@ public class CardController {
 
     private int cardwidth = 79;
     private int cardheight = 123;
-
-    private HandOfCards hand = new HandOfCards();
-    private DeckOfCard deck = new DeckOfCard();
+    private HandOfCards hand;
+    private DeckOfCard deck;
 
     @FXML
     private FlowPane board;
@@ -46,21 +46,25 @@ public class CardController {
     @FXML
     private Text cardsLeft;
     
+    @FXML
+    private Button checkHandButton;
+
+    @FXML
+    private Button newHandButton;
+
+    @FXML
+    private void initialize() {
+        hand = new HandOfCards();
+        deck = new DeckOfCard();
+    }
+
     /** 
-     * Draws one card and adds the card to the Board and hand
+     * Draws one card 
      * @param event
      */
     @FXML
     private void drawCard(ActionEvent event) {
-        List<PlayingCard> playingCards = this.deck.dealHand(1);
-        this.hand.addCard(playingCards);
-        Iterator<PlayingCard> it = playingCards.iterator();
-        
-        while(it.hasNext()) {
-            PlayingCard card = it.next();
-            board.getChildren().add(cardImageView(card));
-        }
-        updateInfo();
+        dealCards(1);
     }
 
     /**
@@ -69,7 +73,12 @@ public class CardController {
      */
     @FXML
     private void newHand(ActionEvent event) {
-        List<PlayingCard> playingCards = this.deck.dealHand(5);
+        dealCards(5);
+        newHandButton.setDisable(true);
+    }
+
+    private void dealCards(int cards) {
+        List<PlayingCard> playingCards = this.deck.dealHand(cards);
         this.hand.addCard(playingCards);
         Iterator<PlayingCard> it = playingCards.iterator();
         
@@ -77,7 +86,9 @@ public class CardController {
             PlayingCard card = it.next();
             board.getChildren().add(cardImageView(card));
         }
-        updateInfo();
+        if(checkHandButton.isDisabled()){
+            updateInfo();
+        }
     }
 
     /**
@@ -89,9 +100,19 @@ public class CardController {
         purgeBoard();
         hand = new HandOfCards();
         deck = new DeckOfCard();
+        newHandButton.setDisable(false);
         updateInfo();
     }
 
+    @FXML
+    private void checkAutoHand(ActionEvent event) {
+        checkHandButton.setDisable(!checkHandButton.isDisable());
+    }
+
+    @FXML
+    private void checkHand(ActionEvent event) {
+        updateInfo();
+    }
     /**
      * Gets a card and returns a image object of that card
      * @param card the playing card to fetch a image from
@@ -148,9 +169,8 @@ public class CardController {
             PlayingCard card = it.next();
             sum += card.getFace();
 
-            if (!hasQueenOfSpades && card.getFace() == 12) {
+            if (!hasQueenOfSpades && card.getFace() == 12 && card.getSuit() == 'S') {
                 hasQueenOfSpades = true;
-
             }
             
             if (!hasFlush) {

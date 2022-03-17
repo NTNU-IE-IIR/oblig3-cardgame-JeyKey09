@@ -13,6 +13,8 @@
             <Button fx:id="newHandButton" mnemonicParsing="false" onAction="#newHand" text="New Hand" />
             <Button fx:id="drawButton" mnemonicParsing="false" onAction="#drawCard" text="Draw Card" />
             <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" text="Reset" />
+            <Button fx:id="checkHandButton" mnemonicParsing="false" onAction="#checkHand" text="Check Hand" />
+            <CheckBox mnemonicParsing="false" onAction="#checkAutoHand" text="Auto Check Hand" />
          </children>
       </VBox>
    </right>
