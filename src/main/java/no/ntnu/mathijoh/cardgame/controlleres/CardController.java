@@ -86,6 +86,7 @@ public class CardController {
             PlayingCard card = it.next();
             board.getChildren().add(cardImageView(card));
         }
+        
         if(checkHandButton.isDisabled()){
             updateInfo();
         }
@@ -129,7 +130,7 @@ public class CardController {
                 yStart = cardheight*2;
                 break;
             case 'S':
-                yStart = cardheight*2;
+                yStart = cardheight*3;
                 break;
         }
         Image cardsImage = new Image(getClass().getResourceAsStream("/sample_images/card-deck-2.png"));
@@ -153,7 +154,6 @@ public class CardController {
      * Updates every field on the bottom 
      */
     private void updateInfo() {
-        Iterator<PlayingCard> it = this.hand.getHand().iterator();
         int sum = 0;
         String heartOfCards = "";
         boolean hasFlush = false;
@@ -164,9 +164,8 @@ public class CardController {
         flushControl.put('D', 0);
         flushControl.put('H', 0);
         flushControl.put('S', 0);
-        while(it.hasNext()) {
+        for(PlayingCard card : hand.getHand()) {
             
-            PlayingCard card = it.next();
             sum += card.getFace();
 
             if (!hasQueenOfSpades && card.getFace() == 12 && card.getSuit() == 'S') {
