@@ -1,4 +1,4 @@
-package no.ntnu.idatx2001.oblig3.cardgame;
+package no.ntnu.mathijoh.cardgame.models;
 
 /**
  * Represents a playing card. A playing card has a number (face) between
